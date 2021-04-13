@@ -1,5 +1,5 @@
 function [R1,R2,R3]=CNNTrainProc(Data_train_in,Data_train_out,W1,W3,W4)
-alpha=0.0875;
+alpha=0.01;
 [~,Source_dim,Data_train_count]=size(Data_train_in);
 [~,Conv_dim,ConvK_count]=size(W1);
 Feat_dim=Source_dim-Conv_dim+1;
