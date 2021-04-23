@@ -7,7 +7,7 @@ Pooling_idx=2;
 V1=zeros(Feat_dim,Feat_dim,ConvK_count);
 for i=1:Data_train_count
     for j=1:ConvK_count
-        V1(:,:,j)=filter2(W1(:,:,j),Data_train_in(:,:,i),'valid');
+        V1(:,:,j)=conv2(Data_train_in(:,:,i),rot90(W1(:,:,j),2),'valid');
     end
      Y1=max(0,V1);
      Y2=(Y1(1:2:end,1:2:end,:) ...
@@ -36,7 +36,7 @@ for i=1:Data_train_count
       dW3=alpha*delta3*y2';
       dW1=zeros(size(W1));
     for j=1:ConvK_count
-      dW1(:,:,j)=alpha*filter2(DELTA1(:,:,j),Data_train_in(:,:,i),'valid');
+      dW1(:,:,j)=alpha*conv2(Data_train_in(:,:,i),rot90(DELTA1(:,:,j),2),'valid');
     end
       W4=W4+dW4;
       W3=W3+dW3;

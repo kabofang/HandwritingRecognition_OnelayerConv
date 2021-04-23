@@ -6,7 +6,7 @@ V1=zeros(Feat_dim,Feat_dim,ConvK_count);
 Data_rel_out=zeros(10,Data_test_count);
 for i=1:Data_test_count
     for j=1:ConvK_count
-        V1(:,:,j)=filter2(W1(:,:,j),Data_test_in(:,:,i),'valid');
+        V1(:,:,j)=conv2(Data_test_in(:,:,i),rot90(W1(:,:,j),2),'valid');
     end
      Y1=max(0,V1);
      Y2=(Y1(1:2:end,1:2:end,:) ...
